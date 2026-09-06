@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+   <meta charset="utf-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+
+   <title>Gestión de PQR | LEONSTIENDA</title>
+
+   <link rel="stylesheet" href="css/bootstrap.min.css">
+   <link rel="stylesheet" href="css/style.css">
+   <link rel="stylesheet" href="css/responsive.css">
+   <link rel="stylesheet" href="css/jquery.mCustomScrollbar.min.css">
+   <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+
+   <style>
+      :root {
+         --ls-palo-rosa: #B76E79;
+         --ls-rosa: #F7CAD0;
+         --ls-fucsia: #D6336C;
+         --ls-fucsia-oscuro: #A61E4D;
+      }
+
+      header .header {
+         background: linear-gradient(135deg, var(--ls-palo-rosa), var(--ls-fucsia)) !important;
+      }
+
+      .navigation .navbar-nav {
+         display: flex;
+         flex-wrap: wrap;
+         align-items: center;
+      }
+
+      .navigation .nav-item {
+         margin: 0 2px;
+      }
+
+      .navigation .nav-link {
+         color: #ffffff !important;
+         font-size: 13px;
+         padding: 8px 6px !important;
+      }
+
+      .navigation .nav-item.active .nav-link,
+      .navigation .nav-link:hover {
+         color: var(--ls-rosa) !important;
+      }
+
+      .blu {
+         color: var(--ls-fucsia) !important;
+      }
+
+      .read_more,
+      .send_btn {
+         background: var(--ls-fucsia) !important;
+         border-color: var(--ls-fucsia) !important;
+         color: #fff !important;
+         transition: 0.3s;
+      }
+
+      .read_more:hover,
+      .send_btn:hover {
+         background: var(--ls-palo-rosa) !important;
+         border-color: var(--ls-palo-rosa) !important;
+      }
+
+      .titlepage h2 {
+         color: var(--ls-fucsia-oscuro) !important;
+      }
+
+      footer .footer {
+         background: var(--ls-palo-rosa) !important;
+      }
+
+      footer .copyright {
+         background: var(--ls-fucsia-oscuro) !important;
+      }
+
+      .location_icon a {
+         background: var(--ls-fucsia) !important;
+         color: #fff !important;
+      }
+
+      .contactus,
+      .contactusmess,
+      .clients_box,
+      .glasses_box {
+         border-color: var(--ls-palo-rosa) !important;
+      }
+
+      .navbar-toggler {
+         border: 0 !important;
+         padding: 0 !important;
+      }
+
+      .navbar-toggler-icon {
+         background-image: none !important;
+         width: 34px;
+         height: 34px;
+         display: inline-block;
+         background: url('images/menu_icon.png') no-repeat center center;
+         background-size: contain;
+      }
+
+      .about_img {
+         position: relative;
+         display: inline-block;
+      }
+
+      .about_right_cross {
+         position: absolute;
+         right: -20px;
+         bottom: -20px;
+         width: 90px;
+         border-radius: 50%;
+         border: 4px solid #fff;
+         box-shadow: 0 4px 14px rgba(0, 0, 0, .25);
+      }
+   </style>
+</head>
+
+<body class="main-layout position_head">
+
+   <div class="loader_bg">
+      <div class="loader">
+         <img src="images/loading.gif" alt="Cargando">
+      </div>
+   </div>
+
+   <header>
+      <div class="header">
+         <div class="container-fluid">
+            <div class="row">
+
+               <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col logo_section">
+                  <div class="full">
+                     <div class="center-desk">
+                        <div class="logo">
+                           <a href="Gestión de Catálogo.html">
+                              <img src="images/logo1.png" alt="LeonsTienda">
+                           </a>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+
+               <div class="col-xl-9 col-lg-9 col-md-9 col-sm-9">
+                  <nav class="navigation navbar navbar-expand-md navbar-dark">
+
+                     <button class="navbar-toggler" type="button" data-toggle="collapse"
+                        data-target="#navbarsExample04"
+                        aria-controls="navbarsExample04"
+                        aria-expanded="false"
+                        aria-label="Abrir menú">
+                        <span class="navbar-toggler-icon"></span>
+                     </button>
+
+                     <div class="collapse navbar-collapse" id="navbarsExample04">
+                        <ul class="navbar-nav mr-auto">
+
+                           <li class="nav-item">
+                              <a class="nav-link" href="inicio-sesion.php">Inicio sesión</a>
+                           </li>
+
+                           <li class="nav-item">
+                              <a class="nav-link" href="Gestión de Catálogo.html">Gestión de catalogos</a>
+                           </li>
+
+                           <li class="nav-item">
+                              <a class="nav-link" href="Carrito de Compras y Pasarela de Pago.html">
+                                 Carrito de compras y pasarela de pago
+                              </a>
+                           </li>
+
+                           <li class="nav-item">
+                              <a class="nav-link" href="Asesoria al cliente (chat).html">
+                                 Asesoria al cliente (Chat)
+                              </a>
+                           </li>
+
+                           <li class="nav-item active">
+                              <a class="nav-link" href="Gestión de PQR.html">Gestión de PQR</a>
+                           </li>
+
+                           <li class="nav-item">
+                              <a class="nav-link" href="Gestión de envios.html">Gestión de envios</a>
+                           </li>
+
+                           <li class="nav-item">
+                              <a class="nav-link" href="Administración.html">Adminstrador</a>
+                           </li>
+
+                        </ul>
+                     </div>
+                  </nav>
+               </div>
+
+            </div>
+         </div>
+      </div>
+   </header>
+
+   <main class="pqr-seccion">
+      <div class="container">
+
+         <section class="pqr-introduccion">
+            <div class="row d_flex align-items-center">
+
+               <div class="="col-md-5">
+                  <div class="about_img">
+                     <figure>
+                        <img src="images/about_img.jpg" alt="LeonsTienda">
+                     </figure>
+                     <img class="about_right_cross" src="images/about_right_cross.jpg" alt="LeonsTienda">
+                  </div>
+               </div>
+
+               <div class="col-md-7">
+                  <h2>Gestión de PQR</h2>
+                  <p>
+                     En LeonsTienda trabajamos para ofrecerte la mejor experiencia de compra.
+                     Aquí puedes presentar peticiones, quejas, reclamos o sugerencias relacionadas
+                     con nuestros productos y servicios.
+                  </p>
+               </div>
+
+            </div>
+         </section>
+
+         <section class="row">
+
+            <div class="col-md-4 mb-4">
+               <div class="pqr-tarjeta">
+                  <h3>Petición</h3>
+                  <p>Solicita información, orientación o atención relacionada con nuestros productos y servicios.</p>
+               </div>
+            </div>
+
+            <div class="col-md-4 mb-4">
+               <div class="pqr-tarjeta">
+                  <h3>Queja</h3>
+                  <p>Expresa tu inconformidad sobre la atención o el servicio recibido.</p>
+               </div>
+            </div>
+
+            <div class="col-md-4 mb-4">
+               <div class="pqr-tarjeta">
+                  <h3>Reclamo</h3>
+                  <p>Reporta inconvenientes relacionados con compras, productos o pedidos.</p>
+               </div>
+            </div>
+
+         </section>
+
+         <section class="row">
+
+            <div class="col-md-7">
+               <div class="pqr-formulario">
+                  <h2>Registrar una PQR</h2>
+
+                  <form>
+                     <label for="nombre">Nombre completo</label>
+                     <input class="form-control" type="text" id="nombre" placeholder="Ingresa tu nombre completo" required>
+
+                     <label for="correo">Correo electrónico</label>
+                     <input class="form-control" type="email" id="correo" placeholder="ejemplo@correo.com" required>
+
+                     <label for="tipo">Tipo de solicitud</label>
+                     <select class="form-control" id="tipo" required>
+                        <option value="">Selecciona una opción</option>
+                        <option value="peticion">Petición</option>
+                        <option value="queja">Queja</option>
+                        <option value="reclamo">Reclamo</option>
+                        <option value="sugerencia">Sugerencia</option>
+                     </select>
+
+                     <label for="asunto">Asunto</label>
+                     <input class="form-control" type="text" id="asunto" placeholder="Escribe el asunto de tu solicitud" required>
+
+                     <label for="mensaje">Descripción de la solicitud</label>
+                     <textarea class="form-control" id="mensaje" placeholder="Describe detalladamente tu solicitud" required></textarea>
+
+                     <button type="submit" class="boton-pqr">Enviar PQR</button>
+                  </form>
+               </div>
+            </div>
+
+            <div class="col-md-5">
+               <div class="pqr-formulario">
+                  <h2>Consultar estado de PQR</h2>
+
+                  <p>Si ya registraste una solicitud, consulta su estado con el número de radicado.</p>
+
+                  <label for="radicado">Número de radicado</label>
+                  <input class="form-control" type="text" id="radicado" placeholder="Ejemplo: PQR-2026-001">
+
+                  <button type="button" class="boton-pqr">Consultar estado</button>
+
+                  <div class="estado-pqr">
+                     <h3>Estados de la solicitud</h3>
+                     <ul>
+                        <li>Recibida</li>
+                        <li>En revisión</li>
+                        <li>En proceso</li>
+                        <li>Respondida</li>
+                        <li>Cerrada</li>
+                     </ul>
+                  </div>
+               </div>
+            </div>
+
+         </section>
+
+         <section class="info-importante">
+            <h3>Información importante</h3>
+            <ul>
+               <li>La plataforma es de libre acceso para todos los usuarios.</li>
+               <li>Los usuarios pueden enviar solicitudes relacionadas con productos y servicios de LeonsTienda.</li>
+               <li>El usuario debe proporcionar información válida para facilitar la respuesta.</li>
+               <li>Cada solicitud puede contar con un número de radicado para realizar seguimiento.</li>
+            </ul>
+         </section>
+
+      </div>
+   </main>
+
+   <footer>
+      <div class="footer">
+         <div class="container">
+            <div class="row">
+               <div class="col-md-8 offset-md-2">
+                  <ul class="location_icon">
+
+                     <li>
+                        <a href="https://maps.app.goo.gl/m3mVUJA5KvkRsDRN6?g_st=aw" target="_blank">
+                           <i class="fa fa-map-marker" aria-hidden="true"></i>
+                        </a>
+                        <br>Calle 4#6, Barrio Villa Nelly, El Placer, Valle del Cauca
+                     </li>
+
+                     <li>
+                        <a href="tel:+573148735983">
+                           <i class="fa fa-phone" aria-hidden="true"></i>
+                        </a>
+                        <br>+57 314 873 5983
+                     </li>
+
+                     <li>
+                        <a href="mailto:leonstienda26@gmail.com">
+                           <i class="fa fa-envelope" aria-hidden="true"></i>
+                        </a>
+                        <br>leonstienda26@gmail.com
+                     </li>
+
+                  </ul>
+               </div>
+            </div>
+         </div>
+
+         <div class="copyright">
+            <div class="container">
+               <div class="row">
+                  <div class="col-md-12">
+                     <p>© 2026 LEONS TIENDA. Todos los derechos reservados.</p>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </footer>
+
+   <script src="js/jquery.min.js"></script>
+   <script src="js/popper.min.js"></script>
+   <script src="js/bootstrap.bundle.min.js"></script>
+   <script src="js/jquery-3.0.0.min.js"></script>
+   <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
+   <script src="js/custom.js"></script>
+
+</body>
+</html>
