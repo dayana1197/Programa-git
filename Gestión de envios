@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+   <meta charset="utf-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+
+   <title>Gestión de envíos | LEONSTIENDA</title>
+
+   <link rel="stylesheet" href="css/bootstrap.min.css">
+   <link rel="stylesheet" href="css/style.css">
+   <link rel="stylesheet" href="css/responsive.css">
+   <link rel="stylesheet" href="css/jquery.mCustomScrollbar.min.css">
+   <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+
+   <style>
+      :root {
+         --ls-palo-rosa: #B76E79;
+         --ls-rosa: #F7CAD0;
+         --ls-fucsia: #D6336C;
+         --ls-fucsia-oscuro: #A61E4D;
+      }
+
+      header .header {
+         background: linear-gradient(135deg, var(--ls-palo-rosa), var(--ls-fucsia)) !important;
+      }
+
+      .navigation .navbar-nav {
+         display: flex;
+         flex-wrap: wrap;
+         align-items: center;
+      }
+
+      .navigation .nav-item {
+         margin: 0 2px;
+      }
+
+      .navigation .nav-link {
+         color: #ffffff !important;
+         font-size: 13px;
+         padding: 8px 6px !important;
+      }
+
+      .navigation .nav-item.active .nav-link,
+      .navigation .nav-link:hover {
+         color: var(--ls-rosa) !important;
+      }
+
+      .blu {
+         color: var(--ls-fucsia) !important;
+      }
+
+      .read_more,
+      .send_btn,
+      .boton-envio {
+         background: var(--ls-fucsia) !important;
+         border-color: var(--ls-fucsia) !important;
+         color: #fff !important;
+         transition: 0.3s;
+      }
+
+      .read_more:hover,
+      .send_btn:hover,
+      .boton-envio:hover {
+         background: var(--ls-palo-rosa) !important;
+         border-color: var(--ls-palo-rosa) !important;
+      }
+
+      .titlepage h2 {
+         color: var(--ls-fucsia-oscuro) !important;
+      }
+
+      footer .footer {
+         background: var(--ls-palo-rosa) !important;
+      }
+
+      footer .copyright {
+         background: var(--ls-fucsia-oscuro) !important;
+      }
+
+      .location_icon a {
+         background: var(--ls-fucsia) !important;
+         color: #fff !important;
+      }
+
+      .navbar-toggler {
+         border: 0 !important;
+         padding: 0 !important;
+      }
+
+      .navbar-toggler-icon {
+         background-image: none !important;
+         width: 34px;
+         height: 34px;
+         display: inline-block;
+         background: url('images/menu_icon.png') no-repeat center center;
+         background-size: contain;
+      }
+
+      .about_img {
+         position: relative;
+         display: inline-block;
+      }
+
+      .about_right_cross {
+         position: absolute;
+         right: -20px;
+         bottom: -20px;
+         width: 90px;
+         border-radius: 50%;
+         border: 4px solid #fff;
+         box-shadow: 0 4px 14px rgba(0, 0, 0, .25);
+      }
+
+      .envios-seccion {
+         padding: 65px 0;
+         background: #fff;
+      }
+
+      .envios-introduccion {
+         margin-bottom: 45px;
+      }
+
+      .envios-introduccion h2 {
+         color: var(--ls-fucsia-oscuro);
+         font-weight: bold;
+      }
+
+      .envios-introduccion p {
+         color: #555;
+         line-height: 1.8;
+      }
+
+      .tarjeta-envio {
+         height: 100%;
+         padding: 25px;
+         text-align: center;
+         border: 1px solid var(--ls-rosa);
+         border-radius: 12px;
+         background: #fffafa;
+         box-shadow: 0 4px 14px rgba(183, 110, 121, .15);
+      }
+
+      .tarjeta-envio .icono {
+         font-size: 34px;
+         margin-bottom: 10px;
+      }
+
+      .tarjeta-envio h3 {
+         color: var(--ls-fucsia-oscuro);
+         font-size: 20px;
+      }
+
+      .tarjeta-envio p {
+         color: #666;
+         margin-bottom: 0;
+      }
+
+      .panel-envio {
+         height: 100%;
+         margin-top: 30px;
+         padding: 30px;
+         border-radius: 14px;
+         background: #fffafa;
+         box-shadow: 0 4px 14px rgba(183, 110, 121, .15);
+      }
+
+      .panel-envio h2 {
+         color: var(--ls-fucsia-oscuro);
+         margin-bottom: 15px;
+      }
+
+      .panel-envio p {
+         color: #555;
+      }
+
+      .panel-envio label {
+         display: block;
+         margin-top: 15px;
+         margin-bottom: 6px;
+         color: var(--ls-fucsia-oscuro);
+         font-weight: bold;
+      }
+
+      .panel-envio input {
+         width: 100%;
+         padding: 11px;
+         border: 1px solid #e1a4b5;
+         border-radius: 7px;
+      }
+
+      .panel-envio input:focus {
+         outline: none;
+         border-color: var(--ls-fucsia);
+         box-shadow: 0 0 0 3px rgba(214, 51, 108, .12);
+      }
+
+      .boton-envio {
+         width: 100%;
+         margin-top: 22px;
+         padding: 12px;
+         border: none;
+         border-radius: 7px;
+         font-weight: bold;
+         cursor: pointer;
+      }
+
+      .seguimiento {
+         margin-top: 20px;
+      }
+
+      .paso {
+         display: flex;
+         align-items: center;
+         margin: 18px 0;
+      }
+
+      .circulo {
+         width: 35px;
+         height: 35px;
+         margin-right: 15px;
+         display: flex;
+         align-items: center;
+         justify-content: center;
+         border-radius: 50%;
+         background: var(--ls-fucsia);
+         color: #fff;
+         font-weight: bold;
+      }
+
+      .paso p {
+         margin: 0;
+         color: #555;
+      }
+
+      .informacion-envios {
+         margin-top: 35px;
+         padding: 25px;
+         border-left: 5px solid var(--ls-palo-rosa);
+         border-radius: 8px;
+         background: #fff5f7;
+      }
+
+      .informacion-envios h3 {
+         color: var(--ls-fucsia-oscuro);
+      }
+
+      .informacion-envios ul {
+         margin: 10px 0 0 20px;
+         color: #555;
+         line-height: 1.8;
+      }
+
+      .resultado-envio {
+         margin-top: 20px;
+         padding: 15px;
+         border-radius: 8px;
+         background: #f5e1e6;
+         color: #555;
+      }
+   </style>
+</head>
+
+<body class="main-layout position_head">
+
+   <div class="loader_bg">
+      <div class="loader">
+         <img src="images/loading.gif" alt="Cargando">
+      </div>
+   </div>
+
+   <header>
+      <div class="header">
+         <div class="container-fluid">
+            <div class="row">
+
+               <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col logo_section">
+                  <div class="full">
+                     <div class="center-desk">
+                        <div class="logo">
+                           <a href="Gestión de Catálogo.html">
+                              <img src="images/logo1.png" alt="LeonsTienda">
+                           </a>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+
+               <div class="col-xl-9 col-lg-9 col-md-9 col-sm-9">
+                  <nav class="navigation navbar navbar-expand-md navbar-dark">
+
+                     <button class="navbar-toggler" type="button" data-toggle="collapse"
+                        data-target="#navbarsExample04"
+                        aria-controls="navbarsExample04"
+                        aria-expanded="false"
+                        aria-label="Abrir menú">
+                        <span class="navbar-toggler-icon"></span>
+                     </button>
+
+                     <div class="collapse navbar-collapse" id="navbarsExample04">
+                        <ul class="navbar-nav mr-auto">
+
+                           <li class="nav-item">
+                              <a class="nav-link" href="inicio-sesion.php">Inicio sesión</a>
+                           </li>
+
+                           <li class="nav-item">
+                              <a class="nav-link" href="Gestión de Catálogo.html">Gestión de catalogos</a>
+                           </li>
+
+                           <li class="nav-item">
+                              <a class="nav-link" href="Carrito de Compras y Pasarela de Pago.html">
+                                 Carrito de compras y pasarela de pago
+                              </a>
+                           </li>
+
+                           <li class="nav-item">
+                              <a class="nav-link" href="Asesoria al cliente (chat).html">
+                                 Asesoria al cliente (Chat)
+                              </a>
+                           </li>
+
+                           <li class="nav-item">
+                              <a class="nav-link" href="Gestión de PQR.html">Gestión de PQR</a>
+                           </li>
+
+                           <li class="nav-item active">
+                              <a class="nav-link" href="Gestión de envios.html">Gestión de envios</a>
+                           </li>
+
+                           <li class="nav-item">
+                              <a class="nav-link" href="Administración.html">Adminstrador</a>
+                           </li>
+
+                        </ul>
+                     </div>
+                  </nav>
+               </div>
+
+            </div>
+         </div>
+      </div>
+   </header>
+
+   <main class="envios-seccion">
+      <div class="container">
+
+         <section class="envios-introduccion">
+            <div class="row d_flex align-items-center">
+
+               <div class="col-md-5">
+                  <div class="about_img">
+                     <figure>
+                        <img src="images/about_img.jpg" alt="LeonsTienda">
+                     </figure>
+                     <img class="about_right_cross" src="images/about_right_cross.jpg" alt="LeonsTienda">
+                  </div>
+               </div>
+
+               <div class="col-md-7">
+                  <h2>Gestión de envíos</h2>
+                  <p>
+                     Consulta y realiza el seguimiento del estado de tus pedidos
+                     realizados en LeonsTienda.
+                  </p>
+               </div>
+
+            </div>
+         </section>
+
+         <section class="row">
+
+            <div class="col-md-3 mb-4">
+               <div class="tarjeta-envio">
+                  <div class="icono">📦</div>
+                  <h3>Pedido recibido</h3>
+                  <p>Tu pedido ha sido registrado correctamente.</p>
+               </div>
+            </div>
+
+            <div class="col-md-3 mb-4">
+               <div class="tarjeta-envio">
+                  <div class="icono">🛍️</div>
+                  <h3>Preparando pedido</h3>
+                  <p>Estamos preparando tus productos.</p>
+               </div>
+            </div>
+
+            <div class="col-md-3 mb-4">
+               <div class="tarjeta-envio">
+                  <div class="icono">🚚</div>
+                  <h3>En camino</h3>
+                  <p>Tu pedido ha sido enviado.</p>
+               </div>
+            </div>
+
+            <div class="col-md-3 mb-4">
+               <div class="tarjeta-envio">
+                  <div class="icono">🏠</div>
+                  <h3>Entregado</h3>
+                  <p>El pedido ha llegado a su destino.</p>
+               </div>
+            </div>
+
+         </section>
+
+         <section class="row">
+
+            <div class="col-md-6">
+               <div class="panel-envio">
+                  <h2>Consultar envío</h2>
+                  <p>Introduce el número de pedido para consultar el estado actual de tu envío.</p>
+
+                  <label for="pedido">Número de pedido</label>
+                  <input type="text" id="pedido" placeholder="Ejemplo: LS-2026-001">
+
+                  <label for="correo">Correo electrónico</label>
+                  <input type="email" id="correo" placeholder="ejemplo@correo.com">
+
+                  <button class="boton-envio" type="button" onclick="consultarEnvio()">
+                     Consultar estado
+                  </button>
+
+                  <div id="resultado"></div>
+               </div>
+            </div>
+
+            <div class="col-md-6">
+               <div class="panel-envio">
+                  <h2>Información del pedido</h2>
+
+                  <div class="seguimiento">
+                     <div class="paso">
+                        <div class="circulo">1</div>
+                        <p>Pedido recibido</p>
+                     </div>
+
+                     <div class="paso">
+                        <div class="circulo">2</div>
+                        <p>Pedido en preparación</p>
+                     </div>
+
+                     <div class="paso">
+                        <div class="circulo">3</div>
+                        <p>Pedido enviado</p>
+                     </div>
+
+                     <div class="paso">
+                        <div class="circulo">4</div>
+                        <p>Pedido entregado</p>
+                     </div>
+                  </div>
+               </div>
+            </div>
+
+         </section>
+
+         <section class="informacion-envios">
+            <h3>Información importante sobre los envíos</h3>
+            <ul>
+               <li>Los pedidos son procesados después de confirmar la compra.</li>
+               <li>El tiempo de entrega puede variar según la ubicación del cliente.</li>
+               <li>El usuario puede consultar el estado de su pedido mediante el número de pedido.</li>
+               <li>La plataforma permite visualizar las diferentes etapas del proceso de envío.</li>
+               <li>El estado del pedido puede actualizarse durante el proceso de entrega.</li>
+            </ul>
+         </section>
+
+      </div>
+   </main>
+
+   <footer>
+      <div class="footer">
+         <div class="container">
+            <div class="row">
+               <div class="col-md-8 offset-md-2">
+                  <ul class="location_icon">
+
+                     <li>
+                        <a href="https://maps.app.goo.gl/m3mVUJA5KvkRsDRN6?g_st=aw" target="_blank">
+                           <i class="fa fa-map-marker" aria-hidden="true"></i>
+                        </a>
+                        <br>Calle 4#6, Barrio Villa Nelly, El Placer, Valle del Cauca
+                     </li>
+
+                     <li>
+                        <a href="tel:+573148735983">
+                           <i class="fa fa-phone" aria-hidden="true"></i>
+                        </a>
+                        <br>+57 314 873 5983
+                     </li>
+
+                     <li>
+                        <a href="mailto:leonstienda26@gmail.com">
+                           <i class="fa fa-envelope" aria-hidden="true"></i>
+                        </a>
+                        <br>leonstienda26@gmail.com
+                     </li>
+
+                  </ul>
+               </div>
+            </div>
+         </div>
+
+         <div class="copyright">
+            <div class="container">
+               <div class="row">
+                  <div class="col-md-12">
+                     <p>© 2026 LEONS TIENDA. Todos los derechos reservados.</p>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </footer>
+
+   <script src="js/jquery.min.js"></script>
+   <script src="js/popper.min.js"></script>
+   <script src="js/bootstrap.bundle.min.js"></script>
+   <script src="js/jquery-3.0.0.min.js"></script>
+   <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
+   <script src="js/custom.js"></script>
+
+   <script>
+      function consultarEnvio() {
+         let pedido = document.getElementById("pedido").value;
+         let correo = document.getElementById("correo").value;
+         let resultado = document.getElementById("resultado");
+
+         if (pedido === "" || correo === "") {
+            resultado.innerHTML = `
+               <p class="resultado-envio">
+                  Por favor, completa todos los campos.
+               </p>
+            `;
+            return;
+         }
+
+         resultado.innerHTML = `
+            <div class="resultado-envio">
+               <strong>Pedido encontrado</strong>
+               <p>Número de pedido: ${pedido}</p>
+               <p>Estado actual: En preparación</p>
+               <p>Tu pedido está siendo preparado para el envío.</p>
+            </div>
+         `;
+      }
+   </script>
+
+</body>
+</html>
