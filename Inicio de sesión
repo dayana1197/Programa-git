@@ -1,0 +1,419 @@
+http://localhost/LeonsTienda/inicio-sesion.php
+
+<?php
+include("conexion.php");
+
+$mensaje = "";
+$tipo_mensaje = "";
+$redirigir = false;
+
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    $nombre = trim($_POST["nombre"]);
+    $apellido = trim($_POST["apellido"]);
+    $correo = trim($_POST["correo"]);
+    $contrasena = $_POST["contrasena"];
+    $celular = trim($_POST["celular"]);
+    $direccion = trim($_POST["direccion"]);
+    $acepta_terminos = isset($_POST["terminos"]);
+
+    if (!$acepta_terminos) {
+        $mensaje = "Debes aceptar los términos y condiciones.";
+        $tipo_mensaje = "error";
+
+    } elseif (!preg_match('/^[0-9]{10}$/', $celular)) {
+        $mensaje = "El celular debe tener exactamente 10 números.";
+        $tipo_mensaje = "error";
+
+    } else {
+        $verificar = $conexion->prepare(
+            "SELECT id_cliente FROM clientes WHERE correo = ?"
+        );
+
+        $verificar->bind_param("s", $correo);
+        $verificar->execute();
+        $resultado = $verificar->get_result();
+
+        if ($resultado->num_rows > 0) {
+            $mensaje = "Este correo ya se encuentra registrado.";
+            $tipo_mensaje = "error";
+
+        } else {
+            $contrasena_segura = password_hash($contrasena, PASSWORD_DEFAULT);
+
+            $insertar = $conexion->prepare(
+                "INSERT INTO clientes (nombre, apellido, correo, contraseña, celular, direccion)
+                 VALUES (?, ?, ?, ?, ?, ?)"
+            );
+
+            $insertar->bind_param(
+                "ssssss",
+                $nombre,
+                $apellido,
+                $correo,
+                $contrasena_segura,
+                $celular,
+                $direccion
+            );
+
+            if ($insertar->execute()) {
+                $mensaje = "¡Registro exitoso! Bienvenido(a), " . $nombre . ". Serás redirigido a la página principal.";
+                $tipo_mensaje = "exito";
+                $redirigir = true;
+            } else {
+                $mensaje = "No fue posible completar el registro.";
+                $tipo_mensaje = "error";
+            }
+        }
+    }
+}
+?>
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Registro | LeonsTienda</title>
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+
+    <style>
+        :root {
+            --palo-rosa: #B76E79;
+            --rosa-claro: #F7CAD0;
+            --fucsia: #D6336C;
+            --fucsia-oscuro: #A61E4D;
+            --blanco: #ffffff;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background: #fff7f8;
+        }
+
+        .header-tienda {
+            background: linear-gradient(135deg, var(--palo-rosa), var(--fucsia));
+            padding: 12px 0;
+        }
+
+        .logo img {
+            max-width: 180px;
+            height: auto;
+        }
+
+        .menu-tienda {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+            align-items: center;
+            gap: 3px;
+        }
+
+        .menu-tienda a {
+            color: var(--blanco);
+            font-size: 13px;
+            text-decoration: none;
+            padding: 9px 7px;
+        }
+
+        .menu-tienda a:hover,
+        .menu-tienda .activo {
+            color: var(--rosa-claro);
+        }
+
+        .registro-seccion {
+            min-height: 680px;
+            padding: 65px 15px;
+            background:
+                linear-gradient(rgba(255, 247, 248, 0.90), rgba(255, 247, 248, 0.96)),
+                url("images/about_img.jpg") center/cover;
+        }
+
+        .registro-contenedor {
+            max-width: 1000px;
+            margin: auto;
+            display: flex;
+            overflow: hidden;
+            border-radius: 22px;
+            background: var(--blanco);
+            box-shadow: 0 10px 30px rgba(166, 30, 77, 0.20);
+        }
+
+        .registro-imagen {
+            width: 42%;
+            min-height: 600px;
+            padding: 55px 35px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            color: var(--blanco);
+            background:
+                linear-gradient(rgba(166, 30, 77, 0.50), rgba(183, 110, 121, 0.70)),
+                url("images/about_img.jpg") center/cover;
+        }
+
+        .registro-imagen h2 {
+            font-size: 35px;
+            font-weight: bold;
+            margin-bottom: 12px;
+        }
+
+        .registro-imagen p {
+            font-size: 16px;
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        .registro-formulario {
+            width: 58%;
+            padding: 45px;
+        }
+
+        .registro-formulario h1 {
+            color: var(--fucsia-oscuro);
+            font-size: 30px;
+            margin-bottom: 8px;
+        }
+
+        .registro-formulario .subtitulo {
+            color: #777;
+            margin-bottom: 25px;
+        }
+
+        .fila-formulario {
+            display: flex;
+            gap: 15px;
+        }
+
+        .campo {
+            width: 100%;
+            margin-bottom: 17px;
+        }
+
+        .campo label {
+            display: block;
+            margin-bottom: 6px;
+            color: var(--fucsia-oscuro);
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .campo input {
+            width: 100%;
+            box-sizing: border-box;
+            border: 1px solid #e1a4b5;
+            border-radius: 7px;
+            padding: 12px;
+            outline: none;
+        }
+
+        .campo input:focus {
+            border-color: var(--fucsia);
+            box-shadow: 0 0 0 3px rgba(214, 51, 108, 0.12);
+        }
+
+        .terminos {
+            display: flex;
+            gap: 8px;
+            align-items: flex-start;
+            color: #666;
+            font-size: 13px;
+            margin: 4px 0 20px;
+        }
+
+        .terminos input {
+            margin-top: 3px;
+        }
+
+        .btn-registrar {
+            width: 100%;
+            border: none;
+            border-radius: 7px;
+            padding: 13px;
+            background: var(--fucsia);
+            color: var(--blanco);
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .btn-registrar:hover {
+            background: var(--palo-rosa);
+        }
+
+        .mensaje {
+            border-radius: 7px;
+            padding: 12px;
+            margin-bottom: 18px;
+            font-weight: bold;
+        }
+
+        .mensaje.exito {
+            color: #176b39;
+            background: #d9f5e3;
+        }
+
+        .mensaje.error {
+            color: #a61e4d;
+            background: #ffe1e8;
+        }
+
+        .volver {
+            display: block;
+            text-align: center;
+            margin-top: 18px;
+            color: var(--fucsia-oscuro);
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .footer-tienda {
+            background: var(--palo-rosa);
+            color: var(--blanco);
+            padding: 25px 15px;
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            .menu-tienda {
+                justify-content: center;
+                margin-top: 12px;
+            }
+
+            .registro-contenedor {
+                display: block;
+            }
+
+            .registro-imagen,
+            .registro-formulario {
+                width: 100%;
+                box-sizing: border-box;
+            }
+
+            .registro-imagen {
+                min-height: 230px;
+            }
+
+            .fila-formulario {
+                display: block;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="header-tienda">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-3 text-center text-md-left">
+                    <div class="logo">
+                        <a href="Gestión de Catálogo.html">
+                            <img src="images/logo1.png" alt="LeonsTienda">
+                        </a>
+                    </div>
+                </div>
+
+                <div class="col-md-9">
+                    <nav class="menu-tienda">
+                        <a class="activo" href="registro.php">Registrarse</a>
+                        <a href="Gestión de Catálogo.html">Gestión de catalogos</a>
+                        <a href="Carrito de Compras y Pasarela de Pago.html">Carrito de compras y pasarela de pago</a>
+                        <a href="Asesoría al cliente(Chat).html">Asesoria al cliente (Chat)</a>
+                        <a href="Gestión de PQR.html">Gestión de PQR</a>
+                        <a href="Gestión de envios.html">Gestión de envios</a>
+                        <a href="Administración.html">Adminstrador</a>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="registro-seccion">
+        <div class="registro-contenedor">
+
+            <div class="registro-imagen">
+                <h2>Tu estilo comienza aquí</h2>
+                <p>Regístrate en LeonsTienda y descubre prendas pensadas para resaltar tu esencia. 💖</p>
+            </div>
+
+            <div class="registro-formulario">
+                <h1>Crear cuenta</h1>
+                <p class="subtitulo">Completa tus datos para registrarte en LeonsTienda.</p>
+
+                <?php if ($mensaje !== "") { ?>
+                    <div class="mensaje <?php echo $tipo_mensaje; ?>">
+                        <?php echo htmlspecialchars($mensaje); ?>
+                    </div>
+                <?php } ?>
+
+                <form method="POST" action="registro.php">
+
+                    <div class="fila-formulario">
+                        <div class="campo">
+                            <label for="nombre">Nombre</label>
+                            <input type="text" id="nombre" name="nombre" required>
+                        </div>
+
+                        <div class="campo">
+                            <label for="apellido">Apellido</label>
+                            <input type="text" id="apellido" name="apellido" required>
+                        </div>
+                    </div>
+
+                    <div class="campo">
+                        <label for="correo">Correo electrónico</label>
+                        <input type="email" id="correo" name="correo" required>
+                    </div>
+
+                    <div class="campo">
+                        <label for="contrasena">Contraseña</label>
+                        <input type="password" id="contrasena" name="contrasena" minlength="8" required>
+                    </div>
+
+                    <div class="fila-formulario">
+                        <div class="campo">
+                            <label for="celular">Celular</label>
+                            <input type="text" id="celular" name="celular" pattern="[0-9]{10}" maxlength="10" required>
+                        </div>
+
+                        <div class="campo">
+                            <label for="direccion">Dirección</label>
+                            <input type="text" id="direccion" name="direccion" required>
+                        </div>
+                    </div>
+
+                    <label class="terminos">
+                        <input type="checkbox" name="terminos" required>
+                        <span>Acepto los términos y condiciones de LeonsTienda.</span>
+                    </label>
+
+                    <button class="btn-registrar" type="submit">Registrarme</button>
+                </form>
+
+                <a class="volver" href="Gestión de Catálogo.html">← Volver a LeonsTienda</a>
+            </div>
+
+        </div>
+    </main>
+
+    <footer class="footer-tienda">
+        © 2026 LEONS TIENDA. Todos los derechos reservados.
+    </footer>
+
+    <?php if ($redirigir) { ?>
+        <script>
+            setTimeout(function () {
+                window.location.href = "Gesti%C3%B3n%20de%20Cat%C3%A1logo.html";
+            }, 2500);
+        </script>
+    <?php } ?>
+
+</body>
+</html>
