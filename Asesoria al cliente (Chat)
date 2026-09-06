@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <!-- basic -->
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <!-- mobile metas -->
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+      <!-- site metas -->
+      <title>LEONSTIENDA</title>
+      <meta name="keywords" content="">
+      <meta name="description" content="">
+      <meta name="author" content="">
+      <!-- bootstrap css -->
+      <link rel="stylesheet" href="css/bootstrap.min.css">
+      <!-- style css -->
+      <link rel="stylesheet" href="css/style.css">
+      <!-- Responsive-->
+      <link rel="stylesheet" href="css/responsive.css">
+      <!-- fevicon -->
+      <link rel="icon" href="images/logo.jpg" type="image/gif" />
+      <!-- Scrollbar Custom CSS -->
+      <link rel="stylesheet" href="css/jquery.mCustomScrollbar.min.css">
+      <!-- Tweaks for older IEs-->
+      <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
+
+      <style>
+         :root {
+            --ls-palo-rosa: #B76E79;
+            --ls-rosa: #F7CAD0;
+            --ls-fucsia: #D6336C;
+            --ls-fucsia-oscuro: #A61E4D;
+         }
+
+         header .header {
+            background: linear-gradient(135deg, var(--ls-palo-rosa), var(--ls-fucsia)) !important;
+         }
+
+         .navigation .navbar-nav {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+         }
+
+         .navigation .nav-item {
+            margin: 0 2px;
+         }
+
+         .navigation .nav-link {
+            color: #ffffff !important;
+            font-size: 13px;
+            padding: 8px 6px !important;
+         }
+
+         .navigation .nav-item.active .nav-link,
+         .navigation .nav-link:hover {
+            color: var(--ls-rosa) !important;
+         }
+
+         .blu {
+            color: var(--ls-fucsia) !important;
+         }
+
+         .read_more,
+         .send_btn {
+            background: var(--ls-fucsia) !important;
+            border-color: var(--ls-fucsia) !important;
+            color: #fff !important;
+            transition: 0.3s;
+         }
+
+         .read_more:hover,
+         .send_btn:hover {
+            background: var(--ls-palo-rosa) !important;
+            border-color: var(--ls-palo-rosa) !important;
+         }
+
+         .titlepage h2 {
+            color: var(--ls-fucsia-oscuro) !important;
+         }
+
+         footer .footer {
+            background: var(--ls-palo-rosa) !important;
+         }
+
+         footer .copyright {
+            background: var(--ls-fucsia-oscuro) !important;
+         }
+
+         .location_icon a {
+            background: var(--ls-fucsia) !important;
+            color: #fff !important;
+         }
+
+         .contactus,
+         .contactusmess,
+         .clients_box,
+         .glasses_box {
+            border-color: var(--ls-palo-rosa) !important;
+         }
+
+         .navbar-toggler {
+            border: 0 !important;
+            padding: 0 !important;
+         }
+
+         .navbar-toggler-icon {
+            background-image: none !important;
+            width: 34px;
+            height: 34px;
+            display: inline-block;
+            background: url('images/menu_icon.png') no-repeat center center;
+            background-size: contain;
+         }
+
+         .about_img {
+            position: relative;
+            display: inline-block;
+         }
+
+         .about_right_cross {
+            position: absolute;
+            right: -20px;
+            bottom: -20px;
+            width: 90px;
+            border-radius: 50%;
+            border: 4px solid #fff;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, .25);
+         }
+      </style>
+   </head>
+
+   <body class="main-layout position_head">
+      <!-- loader -->
+      <div class="loader_bg">
+         <div class="loader"><img src="images/loading.gif" alt="#" /></div>
+      </div>
+      <!-- end loader -->
+
+      <!-- header -->
+      <header>
+         <div class="header">
+            <div class="container-fluid">
+               <div class="row">
+
+                  <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col logo_section">
+                     <div class="full">
+                        <div class="center-desk">
+                           <div class="logo">
+                              <a href="Gestión de Catálogo.html">
+                                 <img src="images/logo1.png" alt="#" />
+                              </a>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+
+                  <div class="col-xl-9 col-lg-9 col-md-9 col-sm-9">
+                     <nav class="navigation navbar navbar-expand-md navbar-dark ">
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
+                           <span class="navbar-toggler-icon"></span>
+                        </button>
+
+                        <div class="collapse navbar-collapse" id="navbarsExample04">
+                           <ul class="navbar-nav mr-auto">
+
+                              <li class="nav-item">
+                                 <a class="nav-link" href="inicio-sesion.php">Inicio sesión</a>
+                              </li>
+
+                              <li class="nav-item">
+                                 <a class="nav-link" href="Gestión de Catálogo.html">Gestión de catalogos</a>
+                              </li>
+
+                              <li class="nav-item">
+                                 <a class="nav-link" href="Carrito de Compras y Pasarela de Pago.html">
+                                    Carrito de compras y pasarela de pago
+                                 </a>
+                              </li>
+
+                              <li class="nav-item active">
+   <a class="nav-link" href="Asesoria al cliente (Chat).html">
+      Asesoria al cliente (Chat)
+   </a>
+</li>
+                              </li>
+
+                              <li class="nav-item">
+                                 <a class="nav-link" href="Gestión de PQR.html">Gestión de PQR</a>
+                              </li>
+
+                              <li class="nav-item">
+                                 <a class="nav-link" href="Gestión de envios.html">Gestión de envios</a>
+                              </li>
+
+                              <li class="nav-item">
+                                 <a class="nav-link" href="Administración.html">Adminstrador</a>
+                              </li>
+
+                              <li class="nav-item d_none sea_icon">
+                                 <a class="nav-link" href="#">
+                                    <i class="fa fa-shopping-bag" aria-hidden="true"></i>
+                                    <i class="fa fa-search" aria-hidden="true"></i>
+                                 </a>
+                              </li>
+
+                           </ul>
+                        </div>
+                     </nav>
+                  </div>
+
+               </div>
+            </div>
+         </div>
+      </header>
+      <!-- end header -->
+
+      <!-- Asesoría al Cliente(Chat) section -->
+      <div class="Asesoría al Cliente(Chat)">
+         <div class="container">
+            <div class="row">
+               <div class="col-md-10 offset-md-1">
+                  <div class="titlepage">
+                     <h2>Nuestras Prendas</h2>
+                     <p>Descubre nuestra colección de prendas y estilos unicos, pensadas para resaltar tu estilo con sencillez y elegancia.</p>
+                  </div>
+               </div>
+            </div>
+         </div>
+
+         <div class="container-fluid">
+            <div class="row">
+
+               <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
+                  <div class="Gestión de Catálogo">
+                     <figure><img src="images/glass1.jpg" alt="#"/></figure>
+                     <h3><span class="blu">$</span>50</h3>
+                     <p>Prenda</p>
+                  </div>
+               </div>
+
+               <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
+                  <div class="Gestión de Catálogo">
+                     <figure><img src="images/glass2.jpg" alt="#"/></figure>
+                     <h3><span class="blu">$</span>50</h3>
+                     <p>Prenda</p>
+                  </div>
+               </div>
+
+               <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
+                  <div class="Gestión de Catálogo">
+                     <figure><img src="images/glass3.jpg" alt="#"/></figure>
+                     <h3><span class="blu">$</span>50</h3>
+                     <p>Prenda</p>
+                  </div>
+               </div>
+
+               <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
+                  <div class="Gestión de Catálogo">
+                     <figure><img src="images/glass4.jpg" alt="#"/></figure>
+                     <h3><span class="blu">$</span>50</h3>
+                     <p>Prenda</p>
+                  </div>
+               </div>
+
+               <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
+                  <div class="Gestión de Catálogo">
+                     <figure><img src="images/glass5.jpg" alt="#"/></figure>
+                     <h3><span class="blu">$</span>50</h3>
+                     <p>Prenda</p>
+                  </div>
+               </div>
+
+               <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
+                  <div class="Gestión de Catálogo">
+                     <figure><img src="images/glass6.jpg" alt="#"/></figure>
+                     <h3><span class="blu">$</span>50</h3>
+                     <p>Prenda</p>
+                  </div>
+               </div>
+
+               <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
+                  <div class="Gestión de Catálogo">
+                     <figure><img src="images/glass7.jpg" alt="#"/></figure>
+                     <h3><span class="blu">$</span>50</h3>
+                     <p>Prenda</p>
+                  </div>
+               </div>
+
+               <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
+                  <div class="Gestión de Catálogo">
+                     <figure><img src="images/glass8.jpg" alt="#"/></figure>
+                     <h3><span class="blu">$</span>50</h3>
+                     <p>Prenda</p>
+                  </div>
+               </div>
+
+               <div class="col-md-12">
+                  <a class="read_more" href="#">Ver Más</a>
+               </div>
+
+            </div>
+         </div>
+      </div>
+      <!-- end Asesoría al Cliente(Chat) section -->
+
+      <!-- footer -->
+      <footer>
+         <div class="footer">
+            <div class="container">
+               <div class="row">
+                  <div class="col-md-8 offset-md-2">
+                     <ul class="location_icon">
+                        <li><a href="https://maps.app.goo.gl/m3mVUJA5KvkRsDRN6?g_st=aw" target="_blank"><i class="fa fa-map-marker" aria-hidden="true"></i></a><br> Calle 4#6, Barrio Villa Nelly, El Placer, Valle del Cauca</li>
+                        <li><a href="tel:+573148735983"><i class="fa fa-phone" aria-hidden="true"></i></a><br> +57 314 873 5983</li>
+                        <li><a href="mailto:leonstienda26@gmail.com"><i class="fa fa-envelope" aria-hidden="true"></i></a><br> leonstienda26@gmail.com</li>
+                     </ul>
+                  </div>
+               </div>
+            </div>
+
+            <div class="copyright">
+               <div class="container">
+                  <div class="row">
+                     <div class="col-md-12">
+                        <p>© 2026 LEONS TIENDA. Todos los derechos reservados.</p>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </footer>
+      <!-- end footer -->
+
+      <!-- Javascript files -->
+      <script src="js/jquery.min.js"></script>
+      <script src="js/popper.min.js"></script>
+      <script src="js/bootstrap.bundle.min.js"></script>
+      <script src="js/jquery-3.0.0.min.js"></script>
+      <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
+      <script src="js/custom.js"></script>
+   </body>
+</html>
