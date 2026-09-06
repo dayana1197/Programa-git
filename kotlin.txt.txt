@@ -1,2 +1,2 @@
-Nombre de usuario:Dayana1191
-Correo electronico:dayis201050@hotmail.com
+git rm -r kotlin.txt.txt
+git commit -m "Eliminar carpeta"
