@@ -1,2 +1,0 @@
-git rm -r kotlin.txt.txt
-git commit -m "Eliminar carpeta"
